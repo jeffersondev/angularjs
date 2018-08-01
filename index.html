@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app="todoApp">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <script src="todo.js"></script>
+    <script src="cliente.js"></script>
+    <link rel="stylesheet" href="todo.css">
+</head>
+
+<body>
+    <h2>Clientes</h2>
+    <div ng-controller="ClienteController as cliente">
+        <form style="margin-bottom: 20px;" ng-submit="cliente.adicionarCliente()">
+            <input type="text" ng-model="cliente.nome">
+            <input type="number" ng-model="cliente.idade">
+            <input type="submit" value="Adicionar">
+            <input type="button" value="Limpar" ng-click="cliente.limpar()">
+        </form>
+        <table ng-if="cliente.clientes.length > 0" border="1px" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Operação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cli in cliente.clientes">
+                    <td>{{cli.nome}}</td>
+                    <td>{{cli.idade}}</td>
+                    <td><a href="" ng-click="cliente.excluir(cli.nome)">excluir</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
